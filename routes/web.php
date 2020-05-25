@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('posts');	
+});
+
+// Route::resource('posts', 'PostController');
+
+Route::prefix('posts')->group(function(){
+	Route::get('/', 'PostController@index')->name('interests.index');
+	Route::post('/', 'PostController@store')->name('interests.store');
+	Route::put('/{id}', 'PostController@update')->name('interests.more_info');
+	Route::delete('/{id}', 'PostController@destroy')->name('interests.destroy');
 });
